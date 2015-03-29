@@ -1,4 +1,4 @@
-describe("ConsoleReporter", function() {
+xdescribe("ConsoleReporter", function() {
   //keep these literal.  otherwise the test loses value as a test.
   function green(str) {
     return '\033[32m' + str + '\033[0m';

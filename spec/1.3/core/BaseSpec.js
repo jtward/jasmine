@@ -1,4 +1,4 @@
-describe("base.js", function() {
+xdescribe("base.js", function() {
   describe("jasmine.MessageResult", function() {
     it("#toString should pretty-print and concatenate each part of the message", function() {
       var values = ["log", "message", 123, {key: "value"}, "FTW!"];

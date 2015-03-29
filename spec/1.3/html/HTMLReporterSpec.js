@@ -1,4 +1,4 @@
-describe("HtmlReporter", function() {
+xdescribe("HtmlReporter", function() {
   var env;
   var htmlReporter;
   var body;

@@ -1,4 +1,4 @@
-describe("jasmine.util", function() {
+xdescribe("jasmine.util", function() {
   describe("extend", function () {
     it("should add properies to a destination object ", function() {
       var destination = {baz: 'baz'};

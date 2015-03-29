@@ -1,4 +1,4 @@
-describe('jasmine.NestedResults', function() {
+xdescribe('jasmine.NestedResults', function() {
   it('#addResult increments counters', function() {
     // Leaf case
     var results = new jasmine.NestedResults();

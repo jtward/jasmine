@@ -1,4 +1,4 @@
-describe("jasmine spec running", function () {
+xdescribe("jasmine spec running", function () {
   var env;
   var fakeTimer;
 

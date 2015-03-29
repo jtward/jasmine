@@ -1,4 +1,4 @@
-describe('Suite', function() {
+xdescribe('Suite', function() {
   var fakeTimer;
   var env;
 

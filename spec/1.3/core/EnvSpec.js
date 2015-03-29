@@ -1,4 +1,4 @@
-describe("jasmine.Env", function() {
+xdescribe("jasmine.Env", function() {
   var env;
   beforeEach(function() {
     env = new jasmine.Env();

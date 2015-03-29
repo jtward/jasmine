@@ -1,4 +1,4 @@
-describe('jasmine.Reporter', function() {
+xdescribe('jasmine.Reporter', function() {
   var env;
 
 

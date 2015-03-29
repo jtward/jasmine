@@ -1,4 +1,4 @@
-describe("jasmine.MultiReporter", function() {
+xdescribe("jasmine.MultiReporter", function() {
   var multiReporter, fakeReporter1, fakeReporter2;
 
   beforeEach(function() {

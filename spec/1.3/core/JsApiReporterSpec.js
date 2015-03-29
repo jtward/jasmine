@@ -1,4 +1,4 @@
-describe('jasmine.jsApiReporter', function() {
+xdescribe('jasmine.jsApiReporter', function() {
   describe('results', function () {
     var reporter, spec1, spec2, spec3, expectedSpec1Results, expectedSpec2Results;
     var env;

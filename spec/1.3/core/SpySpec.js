@@ -1,4 +1,4 @@
-describe('Spies', function () {
+xdescribe('Spies', function () {
   it('should replace the specified function with a spy object', function() {
     var originalFunctionWasCalled = false;
     var TestClass = {
