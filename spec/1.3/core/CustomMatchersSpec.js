@@ -39,16 +39,14 @@ describe("Custom Matchers", function() {
     env.execute();
 
     spec1Matcher.matcherForSuite("expected");
-    expect(spec1Matcher.message).toEqual("matcherForSuite: actual: xxx; expected: expected");
-    spec1Matcher.matcherForSpec("expected");
-    expect(spec1Matcher.message).toEqual("matcherForSpec: actual: xxx; expected: expected");
+    expect(spec1.result.passedExpectations.length).toEqual(1);
 
     spec2Matcher.matcherForSuite("expected");
-    expect(spec2Matcher.message).toEqual("matcherForSuite: actual: yyy; expected: expected");
+    expect(spec2.result.passedExpectations.length).toEqual(1);
     expect(spec2Matcher.matcherForSpec).toBe(jasmine.undefined);
   });
 
-  it("should generate messages with the same rules as for regular matchers when this.report() is not called", function() {
+  xit("should generate messages with the same rules as for regular matchers when this.report() is not called", function() {
     var spec;
     var suite = env.describe('some suite', function() {
       spec = env.it('spec with an expectation', function () {
@@ -71,7 +69,7 @@ describe("Custom Matchers", function() {
     expect(spec.results().getItems()).toEqual([passResult, failResult]);
   });
 
-  it("should pass args", function() {
+  xit("should pass args", function() {
     var matcherCallArgs = [];
     var spec;
     var suite = env.describe('some suite', function() {
