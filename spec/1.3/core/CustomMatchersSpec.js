@@ -43,7 +43,7 @@ describe("Custom Matchers", function() {
 
     spec2Matcher.matcherForSuite("expected");
     expect(spec2.result.passedExpectations.length).toEqual(1);
-    expect(spec2Matcher.matcherForSpec).toBe(jasmine.undefined);
+    expect(spec2Matcher.matcherForSpec).toBeUndefined();
   });
 
   xit("should generate messages with the same rules as for regular matchers when this.report() is not called", function() {
