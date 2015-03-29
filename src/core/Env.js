@@ -372,6 +372,9 @@ getJasmineRequireObj().Env = function(j$) {
     };
 
     this.it = function(description, fn, timeout) {
+      if (fn == null) {
+        throw new Error("Jasmine 2.x: no spec body. Move any `runs` functions inside the `it` callback.");
+      }
       var spec = specFactory(description, fn, currentDeclarationSuite, timeout);
       currentDeclarationSuite.addChild(spec);
       return spec;
