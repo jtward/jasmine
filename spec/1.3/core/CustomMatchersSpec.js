@@ -1,4 +1,6 @@
-xdescribe("Custom Matchers", function() {
+describe("Custom Matchers", function() {
+  var jasmine = window.j$;
+
   var env;
   var fakeTimer;
 
@@ -19,7 +21,7 @@ xdescribe("Custom Matchers", function() {
         });
       });
 
-      spec1 = env.it('spec with an expectation').runs(function () {
+      spec1 = env.it('spec with an expectation', function () {
         this.addMatchers({
           matcherForSpec: function(expected) {
             this.message = "matcherForSpec: actual: " + this.actual + "; expected: " + expected;
@@ -29,12 +31,12 @@ xdescribe("Custom Matchers", function() {
         spec1Matcher = this.expect("xxx");
       });
 
-      spec2 = env.it('spec with failing expectation').runs(function () {
+      spec2 = env.it('spec with failing expectation', function () {
         spec2Matcher = this.expect("yyy");
       });
     });
 
-    suite.execute();
+    env.execute();
 
     spec1Matcher.matcherForSuite("expected");
     expect(spec1Matcher.message).toEqual("matcherForSuite: actual: xxx; expected: expected");
@@ -49,7 +51,7 @@ xdescribe("Custom Matchers", function() {
   it("should generate messages with the same rules as for regular matchers when this.report() is not called", function() {
     var spec;
     var suite = env.describe('some suite', function() {
-      spec = env.it('spec with an expectation').runs(function () {
+      spec = env.it('spec with an expectation', function () {
         this.addMatchers({
           toBeTrue: function() {
             return this.actual === true;
@@ -60,7 +62,7 @@ xdescribe("Custom Matchers", function() {
       });
     });
 
-    suite.execute();
+    env.execute();
     var passResult = new jasmine.ExpectationResult({passed: true, matcherName: 'toBeTrue',
       actual: true, expected: jasmine.undefined, message: "Passed." });
     var failResult = new jasmine.ExpectationResult({passed: false, matcherName: 'toBeTrue',
@@ -73,7 +75,7 @@ xdescribe("Custom Matchers", function() {
     var matcherCallArgs = [];
     var spec;
     var suite = env.describe('some suite', function() {
-      spec = env.it('spec with an expectation').runs(function () {
+      spec = env.it('spec with an expectation', function () {
         this.addMatchers({
           toBeTrue: function() {
             matcherCallArgs.push(jasmine.util.argsToArray(arguments));
@@ -86,7 +88,7 @@ xdescribe("Custom Matchers", function() {
       });
     });
 
-    suite.execute();
+    env.execute();
     var results = spec.results().getItems();
     expect(results[0].expected).toEqual(jasmine.undefined);
     expect(results[1].expected).toEqual('arg');
