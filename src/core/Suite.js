@@ -1,4 +1,11 @@
 getJasmineRequireObj().Suite = function(j$) {
+
+  warn = function(warning) {
+    if (console.warn) {
+      console.warn(warning);
+    }
+  };
+
   function Suite(attrs) {
     this.env = attrs.env;
     this.id = attrs.id;
@@ -89,7 +96,34 @@ getJasmineRequireObj().Suite = function(j$) {
 
   Suite.prototype.sharedUserContext = function() {
     if (!this.sharedContext) {
-      this.sharedContext = this.parentSuite ? clone(this.parentSuite.sharedUserContext()) : {};
+      env = this.env;
+      global = j$.getGlobal();
+      this.sharedContext = this.parentSuite ?
+        clone(this.parentSuite.sharedUserContext()) :
+        {
+          addMatchers: function(matchers) {
+            warn("Jasmine 2.x: addMatchers should be called on jasmine, not the spec. Also, matcher syntax has changed; see http://jasmine.github.io/edge/custom_matcher.html");
+            Object.keys(matchers).forEach(function(key) {
+              matcher = matchers[key];
+              matchers[key] = function(util, customEqualityTesters) {
+                return {
+                  compare: function(actual, expected) {
+                    result = {
+                      actual: actual
+                    };
+                    result.pass = matcher.call(result, expected);
+                    return result;
+                  }
+                };
+              }
+            });
+            return env.addMatchers(matchers);
+          },
+          expect: function() {
+            warn("Jasmine 2.x: expect should be called on jasmine, not the spec.");
+            return env.expect.apply(env, arguments);
+          }
+        };
     }
 
     return this.sharedContext;
