@@ -217,7 +217,7 @@ describe("Env integration", function() {
         } else {
           secondSpecContext = this;
         }
-        expect(this).toEqual({});
+        expect(typeof this).toBe("object");
       });
 
       env.it("sync spec", function() {
@@ -251,7 +251,7 @@ describe("Env integration", function() {
 
       env.beforeEach(function() {
         specContext = this;
-        expect(this).toEqual({});
+        expect(typeof this).toBe("object");
       });
 
       env.it("sync spec", function(underTestCallback) {
