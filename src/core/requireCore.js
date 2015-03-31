@@ -31,6 +31,7 @@ var getJasmineRequireObj = (function (jasmineGlobal) {
     j$.ExceptionFormatter = jRequire.ExceptionFormatter();
     j$.Expectation = jRequire.Expectation();
     j$.buildExpectationResult = jRequire.buildExpectationResult();
+    j$.ExpectationResult = jRequire.ExpectationResult(j$);
     j$.JsApiReporter = jRequire.JsApiReporter();
     j$.matchersUtil = jRequire.matchersUtil(j$);
     j$.ObjectContaining = jRequire.ObjectContaining(j$);

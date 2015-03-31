@@ -48,3 +48,16 @@ getJasmineRequireObj().buildExpectationResult = function() {
 
   return buildExpectationResult;
 };
+
+getJasmineRequireObj().ExpectationResult = function(j$) {
+  warn = function(warning) {
+    if (console.warn) {
+      console.warn(warning);
+    }
+  };
+
+  return function(options) {
+    warn("Jasmine 2.x: use buildExpectationResult instead of new ExpectationResult");
+    return j$.buildExpectationResult(options);
+  };
+}

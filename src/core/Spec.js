@@ -1,4 +1,11 @@
 getJasmineRequireObj().Spec = function(j$) {
+
+  warn = function(warning) {
+    if (console.warn) {
+      console.warn(warning);
+    }
+  };
+
   function Spec(attrs) {
     this.expectationFactory = attrs.expectationFactory;
     this.resultCallback = attrs.resultCallback || function() {};
@@ -24,12 +31,18 @@ getJasmineRequireObj().Spec = function(j$) {
       fullName: this.getFullName(),
       failedExpectations: [],
       passedExpectations: [],
-      pendingReason: ''
+      pendingReason: '',
+      _items: [],
+      getItems: function() {
+        warn("Jasmine 2.x: use spec.result.passedExpectations and spec.result.failedExpectations instead of spec.results().getItems()");
+        return this._items;
+      }
     };
   }
 
   Spec.prototype.addExpectationResult = function(passed, data) {
     var expectationResult = this.expectationResultFactory(data);
+    this.result._items.push(expectationResult);
     if (passed) {
       this.result.passedExpectations.push(expectationResult);
     } else {
@@ -132,6 +145,11 @@ getJasmineRequireObj().Spec = function(j$) {
 
   Spec.prototype.getFullName = function() {
     return this.getSpecName(this);
+  };
+
+  Spec.prototype.results = function() {
+    warn("Jasmine 2.x: use spec.result instead of spec.results()");
+    return this.result;
   };
 
   var extractCustomPendingMessage = function(e) {
